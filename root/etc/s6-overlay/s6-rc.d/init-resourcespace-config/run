@@ -1,0 +1,28 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+# create folders
+mkdir -p \
+    /config/www/resourcespace/include \
+    /config/www/resourcespace/filestore
+
+# symlink config folders
+# for dir in include filestore; do
+#     if [ "$(readlink /var/www/html/${dir})" != "/config/www/resourcespace/${dir}" ]; then
+#         rm -rf "/var/www/html/${dir}"
+#         ln -s "/config/www/resourcespace/${dir}" "/var/www/html/${dir}"
+#         lsiown abc:abc "/config/www/resourcespace/${dir}" "/var/www/html/${dir}"
+#     fi
+# done
+
+# # make symlinks
+if [[ ! -L /var/www/localhost/include ]]; then
+    ln -s /var/www/html/include /config/www/resourcespace/include
+fi
+
+if [[ ! -L /var/www/html/filestore ]]; then
+    ln -s	/var/www/html/filestore /config/www/resourcespace/filestore
+fi
+
+lsiown -R abc:abc \
+    /config

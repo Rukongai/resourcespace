@@ -1,36 +1,47 @@
 version: "2"
-
-networks:
-  frontend:
-  backend:
-
-volumes:
-  mariadb:
-  include:
-  filestore:
-
 services:
   resourcespace:
-    image: resourcespace:latest
+    image: rukongai/resourcespace
     restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
     depends_on:
-      - mariadb
+      - resourcespace-db
     volumes:
-      - include:/var/www/html/include
-      - filestore:/var/www/html/filestore
-      - ./testdir:/srv/storage/testdir
+      - ./config/www/include:/config/www/resourcespace/include
+      - ./config/www/filestore:/config/www/resourcespace/filestore
     networks:
-      - frontend
       - backend
     ports:
       - 80:80
-
-  mariadb:
-    image: mariadb
-    restart: unless-stopped
-    env_file:
-      - db.env
+      - eden
+    labels:
+      traefik.enable: true
+      traefik.http.routers.space.rule: Host(`print.worldforge.dev`)
+      traefik.http.routers.space.entrypoints: web-secure
+      traefik.http.routers.space.middlewares: local-ipwhitelist@file
+      traefik.http.services.space.loadbalancer.server.port: 80
+  
+  resourcespace-db:
+    image: lscr.io/linuxserver/mariadb
+    container_name: resourcespace-db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=rsFabrial902!
+      - TZ=America/Denver
+      - MYSQL_DATABASE=resourcespace
+      - MYSQL_USER=resourcespace
+      - MYSQL_PASSWORD=rsFabrial902!
     volumes:
-      - mariadb:/var/lib/mysql
+      # - /preservation/appdata/docker/resourcespace/mariadb:/config
+      - ./config/db:/config
+    restart: unless-stopped
     networks:
       - backend
+
+networks:
+  eden:
+    external: true
+  backend:
