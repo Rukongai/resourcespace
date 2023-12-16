@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy-version-1d1d7e84
+FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
 
 # environment settings
 ARG DEBIAN_FRONTEND="noninteractive"
