@@ -1,5 +1,4 @@
 FROM ubuntu:latest
-MAINTAINER Stefan Weiberg <rs@hibiki.eu>
 ENV DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && apt-get install -y \
     vim \
@@ -41,10 +40,11 @@ RUN printf '<Directory /var/www/>\n\
 
 ADD cronjob /etc/cron.daily/resourcespace
 
-WORKDIR /var/www/html
-RUN rm index.html
-RUN svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 .
-RUN mkdir filestore
-RUN chmod 777 filestore
-RUN chmod -R 777 include/
-CMD apachectl -D FOREGROUND
+WORKDIR /var/www/html 
+    RUN rm index.html && \
+    svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 . && \
+    mkdir filestore && \
+    chmod 777 filestore && \
+    chmod -R 777 include/
+CMD apachectl -D FOREGROUND 
+VOLUME /var/www/html
