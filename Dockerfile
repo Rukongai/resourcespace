@@ -47,8 +47,11 @@ RUN \
     </Directory>\n'\
     >> /etc/apache2/sites-enabled/000-default.conf
 RUN \
-    rm -rf /var/www/html/index.html && \
+    echo "**** Remove Old Index HTML ****" && \
+    rm /var/www/html/index.html && \
+    echo "**** MKDIR resource space ****" && \
     mkdir /var/www/resourcespace && \
+    echo "**** SVN! ****" && \
     svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /var/www/resourcespace
 RUN \
     mkdir /var/www/resourcespace/filestore && \
