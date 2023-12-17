@@ -48,6 +48,7 @@ RUN \
     >> /etc/apache2/sites-enabled/000-default.conf
 RUN \
     rm -rf /var/www/html/index.html && \
+    mkdir /var/www/resourcespace && \
     svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /var/www/resourcespace
 RUN \
     mkdir /var/www/resourcespace/filestore && \
