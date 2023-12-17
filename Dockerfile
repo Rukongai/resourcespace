@@ -1,5 +1,4 @@
-# syntax=docker/dockerfile:1
-FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
+FROM ubuntu:latest
 
 # environment settings
 ARG DEBIAN_FRONTEND="noninteractive"
@@ -49,10 +48,13 @@ RUN \
     >> /etc/apache2/sites-enabled/000-default.conf
 RUN \
     rm -rf /var/www/html/index.html && \
-    svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /var/www/html && \
-    mkdir /var/www/html/filestore && \
-    chmod 777 /var/www/html/filestore && \
-    chmod -R 777 /var/www/html/include/
+    svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /var/www/resourcespace
+RUN \
+    mkdir /var/www/resourcespace/filestore && \
+    chmod 777 /var/www/resourcespace/filestore && \
+    chmod -R 777 /var/www/resourcespace/include/
 
-COPY /root /
-VOLUME /config
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+VOLUME /var/www/html/filestore /var/www/html/include
