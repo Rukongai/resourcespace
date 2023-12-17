@@ -53,6 +53,7 @@ RUN \
     mkdir /var/www/resourcespace && \
     echo "**** SVN! ****" && \
     svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /var/www/resourcespace
+ADD cronjob /etc/cron.daily/resourcespace
 RUN \
     mkdir /var/www/resourcespace/filestore && \
     chmod 777 /var/www/resourcespace/filestore && \
