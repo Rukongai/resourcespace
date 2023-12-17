@@ -2,7 +2,6 @@ FROM --platform=linux/amd64 ubuntu:latest
 
 # environment settings
 ARG DEBIAN_FRONTEND="noninteractive"
-ENV HOME="/config"
 
 RUN \ 
     echo "**** install runtime dependencies ****" && \
