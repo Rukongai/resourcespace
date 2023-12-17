@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM --platform=linux/amd64 ubuntu:latest
 
 # environment settings
 ARG DEBIAN_FRONTEND="noninteractive"
