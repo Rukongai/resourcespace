@@ -2,7 +2,7 @@
 
 # Path to the config directory in the bind mount
 CONFIG_DIR="/var/www/html"
-CONFIG_FILE="$CONFIG_DIR/config.php"
+CONFIG_FILE="$CONFIG_DIR/include/config.php"
 
 # Check if the config directory is empty
 if [ ! -e $CONFIG_FILE ]; then
