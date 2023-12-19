@@ -5,7 +5,7 @@ CONFIG_DIR="/var/www/html/resourcespace"
 CONFIG_FILE="$CONFIG_DIR/config.php"
 
 # Check if the config directory is empty
-if [ ! -e "$(ls -A $CONFIG_FILE)" ]; then
+if [ ! -e $CONFIG_FILE ]; then
     echo "Config file is missing. Populating with default config."
     cp -R /app/* $CONFIG_DIR/
 else
