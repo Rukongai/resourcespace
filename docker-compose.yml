@@ -9,8 +9,8 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /preservation/appdata/docker/resourcespace/www/resourcespace/include:/var/www/html/include
-      - /preservation/appdata/docker/resourcespace/www/resourcespace/filestore:/var/www/html/filestore
+      - ./include:/var/www/html/include
+      - ./filestore:/var/www/html/filestore
     networks:
       - backend
       - frontend
@@ -27,11 +27,11 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - MYSQL_ROOT_PASSWORD=rsFabrial902!
+      - MYSQL_ROOT_PASSWORD=
       - TZ=America/Denver
-      - MYSQL_DATABASE=resourcespace
-      - MYSQL_USER=resourcespace
-      - MYSQL_PASSWORD=rsFabrial902!
+      - MYSQL_DATABASE=
+      - MYSQL_USER=
+      - MYSQL_PASSWORD=
     volumes:
       - ./config/db:/config
     restart: unless-stopped
