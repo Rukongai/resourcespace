@@ -53,10 +53,9 @@ ADD cronjob /etc/cron.daily/resourcespace
 RUN \
     mkdir /app/filestore && \
     chmod 777 /app/filestore && \
-    chmod -R 777 /app/include/ && \
-    cp -R /app/* /var/html/www 
+    chmod -R 777 /app/include/
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-VOLUME /var/www/html/filestore /var/www/html/include
+VOLUME /var/www/html

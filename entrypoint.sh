@@ -12,7 +12,7 @@ else
     echo "Config directory is not empty. Proceeding with existing configuration."
 fi
 
-chown -R 1000:1000 $CONFIG_DIR
+chown -R 1000:www-data $CONFIG_DIR
 chmod 777 $CONFIG_DIR/filestore
 chmod -R 777 $CONFIG_DIR/include/
 

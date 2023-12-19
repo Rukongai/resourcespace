@@ -1,2 +1,4 @@
 #!/bin/sh
-wget -q -r http://localhost/pages/tools/cron_copy_hitcount.php
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+*/15 * * * *   www-data   cd /var/www/html/pages/tools;nice ionice php cron_copy_hitcount.php
