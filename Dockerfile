@@ -46,19 +46,16 @@ RUN \
     </Directory>\n'\
     >> /etc/apache2/sites-enabled/000-default.conf
 RUN \
-    echo "**** Remove Old Index HTML ****" && \
     rm /var/www/html/index.html && \
-    echo "**** MKDIR resource space ****" && \
-    mkdir /var/www/resourcespace && \
-    echo "**** SVN! ****" && \
-    svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /var/www/resourcespace
+    mkdir /tmp/resourcespace && \
+    svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /tmp/resourcespace
 ADD cronjob /etc/cron.daily/resourcespace
 RUN \
-    mkdir /var/www/resourcespace/filestore && \
-    chmod 777 /var/www/resourcespace/filestore && \
-    chmod -R 777 /var/www/resourcespace/include/
+    mkdir /tmp/resourcespace/filestore && \
+    chmod 777 /tmp/resourcespace/filestore && \
+    chmod -R 777 /tmp/resourcespace/include/
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-VOLUME /var/www/html/filestore /var/www/html/include
+VOLUME /var/www/html/resourcespace/filestore /var/www/html/resourcespace/include

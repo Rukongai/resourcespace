@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Path to the config directory in the bind mount
-CONFIG_DIR="/var/www/html"
+CONFIG_DIR="/var/www/html/resourcespace"
 CONFIG_FILE="$CONFIG_DIR/config.php"
 
 # Check if the config directory is empty
 if [ ! -e "$(ls -A $CONFIG_FILE)" ]; then
     echo "Config file is missing. Populating with default config."
-    cp -R /var/www/resourcespace/* $CONFIG_DIR/
+    cp -R /tmp/resourcespace/* $CONFIG_DIR/
 else
     echo "Config directory is not empty. Proceeding with existing configuration."
 fi
