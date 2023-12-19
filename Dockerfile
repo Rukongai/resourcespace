@@ -47,13 +47,13 @@ RUN \
     >> /etc/apache2/sites-enabled/000-default.conf
 RUN \
     rm /var/www/html/index.html && \
-    mkdir /tmp/resourcespace && \
-    svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /tmp/resourcespace
+    mkdir /app && \
+    svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /app
 ADD cronjob /etc/cron.daily/resourcespace
 RUN \
-    mkdir /tmp/resourcespace/filestore && \
-    chmod 777 /tmp/resourcespace/filestore && \
-    chmod -R 777 /tmp/resourcespace/include/
+    mkdir /app/filestore && \
+    chmod 777 /app/filestore && \
+    chmod -R 777 /app/include/
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
