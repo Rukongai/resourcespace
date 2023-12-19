@@ -58,4 +58,4 @@ RUN \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-VOLUME /var/www/html/resourcespace/filestore /var/www/html/resourcespace/include
+VOLUME /var/www/html/filestore /var/www/html/include

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to the config directory in the bind mount
-CONFIG_DIR="/var/www/html/resourcespace"
+CONFIG_DIR="/var/www/html"
 CONFIG_FILE="$CONFIG_DIR/config.php"
 
 # Check if the config directory is empty
