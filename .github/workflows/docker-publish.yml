@@ -6,8 +6,8 @@ name: Docker Hub Release
 # documentation.
 
 on:
-  schedule:
-    - cron: '15 12 * * *'
+  # schedule:
+  #   - cron: '15 12 * * *'
   push:
     branches: [ "master" ]
     # Publish same ver tags as releases.
