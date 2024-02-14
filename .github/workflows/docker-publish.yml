@@ -79,7 +79,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             rukongai/${{ env.IMAGE_NAME }}:latest
-            rukongai/${{ env.IMAGE_NAME }}:10.2
+            rukongai/${{ env.IMAGE_NAME }}:10.3
           labels: ${{ steps.meta.outputs.labels }}
 
       # - name: Write signing key to disk

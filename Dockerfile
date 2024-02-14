@@ -48,7 +48,7 @@ RUN \
 RUN \
     rm /var/www/html/index.html && \
     mkdir /app && \
-    svn co -q https://svn.resourcespace.com/svn/rs/releases/10.2 /app
+    svn co -q https://svn.resourcespace.com/svn/rs/releases/10.3 /app
 ADD cronjob /etc/cron.daily/resourcespace
 RUN \
     mkdir /app/filestore && \
